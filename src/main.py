@@ -76,7 +76,7 @@ class Gui:
                 self.gui.stop()
                 CredentialsGui()
             else:
-                pass
+                self.gui.stop()
             if self.output == "":
                 self.gui.errorBox("Error", "Please select a File.")
             else:
