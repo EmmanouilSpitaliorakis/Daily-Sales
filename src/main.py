@@ -677,13 +677,19 @@ def main():
     df.to_excel("../data/data_table.xlsx")
     # Combine the Pivot Table to a Python List.
     ref_list = df_to_list(df)
-    with open("../Credentials/credentials.ko", 'r') as cred_json:
-        data = json.load(cred_json)
-        for cred in data["Credentials"]:
-            email = cred['Email']
-            passw = cred['Password']
+
+    # THIS PASSWORD FUNCTION IS REPLACED
+
+    # with open("../Credentials/credentials.ko", 'r') as cred_json:
+    #     data = json.load(cred_json)
+    #     for cred in data["Credentials"]:
+    #         email = cred['Email']
+    #         passw = cred['Password']
+
+    email = os.environ["PANACEA_EMAIL"]
+    secret = os.environ["PANACEA_PASS"]
     # Start the Chrome and Login to Panacea.
-    applicants = Applicants(email, passw)
+    applicants = Applicants(email, secret)
     # Get the data for each applicant.
     applicants.get_data(ref_list)
     # Combine all the data of each applicant to a new list.
